@@ -69,17 +69,17 @@ namespace CustomSeriesPointDrawingSample {
             bool isSelected = trackedPointArgument != null && e.SeriesPoint.Argument.Equals(trackedPointArgument);
 
             using (Graphics graphics = Graphics.FromImage(image)) {
-                Brush fillBrush = isSelected ?
-                    (Brush)new HatchBrush(
-                            HatchStyle.DarkDownwardDiagonal, 
-                            e.LegendDrawOptions.Color, 
-                            e.LegendDrawOptions.ActualColor2) :
-                    (Brush)new SolidBrush(e.LegendDrawOptions.Color);
-                graphics.FillRectangle(fillBrush, totalRect);
+                using (var fillBrush = isSelected ? (Brush)new HatchBrush(HatchStyle.DarkDownwardDiagonal,
+                                                                          e.LegendDrawOptions.Color,
+                                                                          e.LegendDrawOptions.ActualColor2)
+                                                  : (Brush)new SolidBrush(e.LegendDrawOptions.Color)) {
+                    graphics.FillRectangle(fillBrush, totalRect);
+                }
                 Image photo;
                 if (photoCache.TryGetValue(e.SeriesPoint.Argument, out photo))
                     graphics.DrawImage(photo, photoRect);
             }
+
             e.LegendMarkerImage = image;
             e.DisposeLegendMarkerImage = true;
 
@@ -99,9 +99,10 @@ namespace CustomSeriesPointDrawingSample {
         void InitPhotoCache(IEnumerable<Employee> employees) {
             photoCache.Clear();
             foreach (var employee in employees) {
-                MemoryStream stream = new MemoryStream(employee.Photo);
-                if (!photoCache.ContainsKey(employee.FullName))
-                    photoCache.Add(employee.FullName, Image.FromStream(stream));
+                using (MemoryStream stream = new MemoryStream(employee.Photo)) {
+                    if (!photoCache.ContainsKey(employee.FullName))
+                        photoCache.Add(employee.FullName, Image.FromStream(stream));
+                }
             }
         }
 

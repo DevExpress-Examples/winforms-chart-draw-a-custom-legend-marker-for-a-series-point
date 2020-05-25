@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Windows.Forms;
 
 namespace CustomSeriesPointDrawingSample {
@@ -11,6 +9,10 @@ namespace CustomSeriesPointDrawingSample {
         /// </summary>
         [STAThread]
         static void Main() {
+            WindowsFormsSettings.SetDPIAware();
+            WindowsFormsSettings.AllowDpiScale = true;
+            WindowsFormsSettings.AllowAutoScale = DevExpress.Utils.DefaultBoolean.True;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
