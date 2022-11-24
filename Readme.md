@@ -9,7 +9,7 @@ This example demonstrates how to use the [CustomDrawSeriesPoint](https://docs.de
 
 ![Chart](./image/Chart.png)
 
-A custom legend marker is assigned to the [LegendMarkerImage](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries?v=22.2) property. Set the [DisposeLegendMarkerImage](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries?v=22.2) property to `true` to avoid memory leaks. To customize options used to draw the series point, cast [e.SeriesDrawOptions](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries?v=22.2) to the
+Assign a custom legend marker to the [LegendMarkerImage](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries?v=22.2) property. Set the [DisposeLegendMarkerImage](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries?v=22.2) property to `true` to avoid memory leaks. To customize options used to draw the series point, cast [e.SeriesDrawOptions](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries?v=22.2) to the
 [DrawOptions](https://docs.devexpress.com/CoreLibraries/DevExpress.XtraCharts.DrawOptions?v=22.2) class descendant that stores draw options of the required series view type.
 
 ## Files to Review 
