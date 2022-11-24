@@ -1,4 +1,5 @@
 ﻿using CustomSeriesPointDrawingSample.Model;
+using DevExpress.Drawing;
 using DevExpress.XtraCharts;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 namespace CustomSeriesPointDrawingSample {
     public partial class Form1 : Form {
         object trackedPointArgument;
-        Dictionary<string, Image> photoCache = new Dictionary<string, Image>();
+        Dictionary<string, DXImage> photoCache = new Dictionary<string, DXImage>();
 
         #region #Constants
         const int borderSize = 5;
@@ -65,22 +66,22 @@ namespace CustomSeriesPointDrawingSample {
         #region #CustomPointDrawing
         private void OnCustomDrawSeriesPoint(object sender, CustomDrawSeriesPointEventArgs e) {
             // Design a series marker image.
-            Bitmap image = new Bitmap(totalWidth, totalHeight);
+            DXBitmap image = new DXBitmap(totalWidth, totalHeight);
             bool isSelected = trackedPointArgument != null && e.SeriesPoint.Argument.Equals(trackedPointArgument);
 
-            using (Graphics graphics = Graphics.FromImage(image)) {
-                using (var fillBrush = isSelected ? (Brush)new HatchBrush(HatchStyle.DarkDownwardDiagonal,
+            using (DXGraphics graphics = DXGraphics.FromImage(image)) {
+                using (var fillBrush = isSelected ? (DXBrush)new DXHatchBrush(DXHatchStyle.DarkDownwardDiagonal,
                                                                           e.LegendDrawOptions.Color,
                                                                           e.LegendDrawOptions.ActualColor2)
-                                                  : (Brush)new SolidBrush(e.LegendDrawOptions.Color)) {
+                                                  : (DXBrush)new DXSolidBrush(e.LegendDrawOptions.Color)) {
                     graphics.FillRectangle(fillBrush, totalRect);
                 }
-                Image photo;
+                DXImage photo;
                 if (photoCache.TryGetValue(e.SeriesPoint.Argument, out photo))
                     graphics.DrawImage(photo, photoRect);
             }
 
-            e.LegendMarkerImage = image;
+            e.DXLegendMarkerImage = image;
             e.DisposeLegendMarkerImage = true;
 
             PieDrawOptions options = e.SeriesDrawOptions as PieDrawOptions;
@@ -101,7 +102,7 @@ namespace CustomSeriesPointDrawingSample {
             foreach (var employee in employees) {
                 using (MemoryStream stream = new MemoryStream(employee.Photo)) {
                     if (!photoCache.ContainsKey(employee.FullName))
-                        photoCache.Add(employee.FullName, Image.FromStream(stream));
+                        photoCache.Add(employee.FullName, DXImage.FromStream(stream));
                 }
             }
         }
