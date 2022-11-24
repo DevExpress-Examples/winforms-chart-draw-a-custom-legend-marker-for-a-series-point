@@ -1,28 +1,33 @@
-﻿Imports System.ComponentModel.DataAnnotations.Schema
-Imports System.ComponentModel.DataAnnotations
 Imports System.Collections.Generic
+Imports System.ComponentModel.DataAnnotations
+Imports System.ComponentModel.DataAnnotations.Schema
 
 Namespace CustomSeriesPointDrawingSample.Model
 
-    Partial Public Class Employee
-        <Key, Required, Column("EmployeeID")> _
-        Public Property EmployeeId() As Integer
+    Public Partial Class Employee
 
-        <Required, StringLength(20)> _
-        Public Property LastName() As String
+        <Key>
+        <Required>
+        <Column("EmployeeID")>
+        Public Property EmployeeId As Integer
 
-        <Required, StringLength(10)> _
-        Public Property FirstName() As String
+        <Required>
+        <StringLength(20)>
+        Public Property LastName As String
 
-        <Column(TypeName := "image")> _
-        Public Property Photo() As Byte()
+        <Required>
+        <StringLength(10)>
+        Public Property FirstName As String
 
-        Public ReadOnly Property FullName() As String
+        <Column(TypeName:="image")>
+        Public Property Photo As Byte()
+
+        Public ReadOnly Property FullName As String
             Get
                 Return FirstName & " " & LastName
             End Get
         End Property
 
-        Public Overridable Property Orders() As ICollection(Of Order)
+        Public Overridable Property Orders As ICollection(Of Order)
     End Class
 End Namespace
