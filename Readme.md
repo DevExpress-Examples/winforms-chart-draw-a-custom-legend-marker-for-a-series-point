@@ -7,12 +7,12 @@
 
 # Chart for WinForms - Draw a Custom Legend Marker for a Series Point
 
-This example demonstrates how to use the [CustomDrawSeriesPoint](https://docs.devexpress.com/WindowsForms/DevExpress.XtraCharts.ChartControl.CustomDrawSeriesPoint?v=22.2&p=netframework) event to modify the legend markers of nested donut series points.
+This example demonstrates how to use the [CustomDrawSeriesPoint](https://docs.devexpress.com/WindowsForms/DevExpress.XtraCharts.ChartControl.CustomDrawSeriesPoint) event to modify the legend markers of nested donut series points.
 
 ![Chart](./image/Chart.png)
 
-Assign a custom legend marker to the [LegendMarkerImage](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries?v=22.2) property. Set the [DisposeLegendMarkerImage](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries?v=22.2) property to `true` to avoid memory leaks. To customize options used to draw the series point, cast [e.SeriesDrawOptions](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries?v=22.2) to the
-[DrawOptions](https://docs.devexpress.com/CoreLibraries/DevExpress.XtraCharts.DrawOptions?v=22.2) class descendant that stores draw options of the required series view type.
+Assign a custom legend marker to the [LegendMarkerImage](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries) property. Set the [DisposeLegendMarkerImage](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries) property to `true` to avoid memory leaks. To customize options used to draw the series point, cast [e.SeriesDrawOptions](https://docs.devexpress.com/CoreLibraries/2407/cross-platform-core-libraries) to the
+[DrawOptions](https://docs.devexpress.com/CoreLibraries/DevExpress.XtraCharts.DrawOptions) class descendant that stores draw options of the required series view type.
 
 ## Files to Review 
 
@@ -23,7 +23,7 @@ Assign a custom legend marker to the [LegendMarkerImage](https://docs.devexpress
 
 ## Documentation
 
-[Legend Marker](https://docs.devexpress.com/WindowsForms/1985/controls-and-libraries/chart-control/visual-elements/legend-marker?p=netframework)
+[Legend Marker](https://docs.devexpress.com/WindowsForms/1985/controls-and-libraries/chart-control/visual-elements/legend-marker)
 
 ## More Examples 
 
